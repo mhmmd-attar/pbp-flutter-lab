@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (_counter%2 == 0)...[
+            if (_counter%2 == 0) ... [
               const Text(
                 'EVEN',
                 style: TextStyle(
@@ -130,11 +130,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            FloatingActionButton(
-              onPressed: _decrementCounter,
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
-            ),
+            if (_counter != 0) ... [
+              FloatingActionButton(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
+              ),
+            ],
             Expanded(child: Container()),
             FloatingActionButton(
               onPressed: _incrementCounter,
