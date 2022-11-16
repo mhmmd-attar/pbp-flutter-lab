@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/budget_show.dart';
+import 'package:counter_7/model.dart';
 
 class BudgetFormPage extends StatefulWidget {
   const BudgetFormPage({super.key});
@@ -121,13 +122,13 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                       // Added behavior when name is typed
                       onChanged: (String? value) {
                         setState(() {
-                          _amount = value! as double;
+                          _amount = double.parse(value!);
                         });
                       },
                       // Added behavior when data is saved
                       onSaved: (String? value) {
                         setState(() {
-                          _amount = value! as double;
+                          _amount = double.parse(value!);
                         });
                       },
                       // Validator as form validation
@@ -144,6 +145,7 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                     child: DropdownButtonFormField(
                       decoration: const InputDecoration(
                         labelText: 'Choose Type',
+                        contentPadding: EdgeInsets.only(left: 8),
                       ),
                       items: _budgetTypes.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -154,12 +156,12 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                       onChanged: (String? value) {
                         // This is called when the user selects an item.
                         setState(() {
-                          _budgetType = value!;
+                          _budgetType = value ?? "";
                         });
                       },
                       onSaved: (String? value) {
                         setState(() {
-                          _budgetType = value!;
+                          _budgetType = value ?? "";
                         });
                       },
                       // Validator as form validation
@@ -185,11 +187,52 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      final budget = Budget(title: _title, amount: _amount, budgetType: _budgetType);
-                      budgetData.add(budget);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => BudgetShowPage()),
+                      budgetData.add(Budget(_title, _amount, _budgetType));
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 15,
+                            child: ListView(
+                              padding: const EdgeInsets.only(top: 20, bottom: 20),
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                const Center(child: Text(
+                                  'Data successfully saved!',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )),
+                                Row(children: [
+                                  Expanded(flex: 3, child: Container()),
+                                  Expanded(
+                                    flex: 7,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: const [
+                                        Text("Title"),
+                                        Text("Amount"),
+                                        Text("Type"),
+                                      ]
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 90,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(":  $_title"),
+                                        Text(":  $_amount\$"),
+                                        Text(":  $_budgetType")
+                                      ]
+                                    ),
+                                  )
+                                ])
+                              ],
+                            ),
+                          );
+                        }
                       );
                     }
                   },
