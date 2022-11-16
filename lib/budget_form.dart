@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:counter_7/drawer.dart';
 import 'package:counter_7/model.dart';
 
@@ -13,9 +14,29 @@ class BudgetFormPage extends StatefulWidget {
 class _BudgetFormPageState extends State<BudgetFormPage> {
   final _formKey = GlobalKey<FormState>();
   static const _budgetTypes = ['Income', 'Expense'];
+  final TextEditingController _initialDateValue = TextEditingController();
+
   String _title = "";
   double _amount = 0;
   String _budgetType = "";
+  String _date = DateTime.now().toString();
+
+  Future _selectDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(DateTime.now().year - 2),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        DateFormat dateOnly = DateFormat("dd-MM-yyyy");
+        final date = dateOnly.format(pickedDate);
+        _date = date;
+        _initialDateValue.text = date;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +126,38 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: TextFormField(
+                      controller: _initialDateValue,
+                      decoration: InputDecoration(
+                        labelText: "Date",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                      onTap: () {
+                        _selectDate();
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                      onChanged: (String? value) {
+                        setState(() {
+                          _date = value!;
+                        });
+                      },
+                      onSaved: (String? value) {
+                        setState(() {
+                          _date = value!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please specify the date!';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                     child: DropdownButtonFormField(
                       decoration: const InputDecoration(
                         labelText: 'Choose Type',
@@ -150,7 +203,7 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      budgetData.add(Budget(_title, _amount, _budgetType));
+                      budgetData.add(Budget(_title, _amount, _date, _budgetType));
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -176,6 +229,7 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                                       children: const [
                                         Text("Title"),
                                         Text("Amount"),
+                                        Text("Date"),
                                         Text("Type"),
                                       ]
                                     ),
@@ -187,6 +241,7 @@ class _BudgetFormPageState extends State<BudgetFormPage> {
                                       children: [
                                         Text(":  $_title"),
                                         Text(":  $_amount\$"),
+                                        Text(":  $_date"),
                                         Text(":  $_budgetType")
                                       ]
                                     ),

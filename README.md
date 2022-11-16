@@ -25,17 +25,20 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 14. Container
 15. Text
 16. SizedBox
+17. FocusNode
 
 ### Name the types of events that exist in Flutter (example: onPressed).
 1. onChanged
 2. onSaved
 3. onSubmitted
 4. onPressed
-5. Events handled with GestureDetector: onTap, onLongPress, onDoubleTap, onHorizontalDragStart, etc.
+5. onClick
+6. Events handled with GestureDetector: onTap, onLongPress, onDoubleTap, onHorizontalDragStart, etc.
 
 ### Explain how the Navigator works in "switching" pages of a Flutter application.
 
 ### Explain how you implemented the checking list above.
+I started with the form page, adding input fields, following last week's tutorial, for the title and amount of the budget input. Then, I added the dropdown menu that includes 
 
 <br><br>
 ## References
@@ -46,6 +49,8 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 5. https://stackoverflow.com/questions/49780858/flutter-dropdown-text-field
 6. https://stackoverflow.com/questions/73004239/flutter-dart-data-class
 7. https://www.geeksforgeeks.org/flutter-custom-widgets/
+8. https://stackoverflow.com/questions/54127847/flutter-how-to-display-datepicker-when-textformfield-is-clicked
+9. https://stackoverflow.com/questions/16126579/how-do-i-format-a-date-with-dart
 ### README references
 1. https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
 ## Collaborators

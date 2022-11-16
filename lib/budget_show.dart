@@ -34,19 +34,35 @@ class _BudgetShowPageState extends State<BudgetShowPage> {
                 borderRadius: const BorderRadius.all(Radius.circular(5))
               ),
               child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      budgetData[index].title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
+                Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [Text(
+                            budgetData[index].title,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                            ),
+                          )],
+                        ),
                       ),
-                    ),
-                  ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [Text(
+                            budgetData[index].date,
+                            style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16
+                            ),
+                          )],
+                        ),
+                      ),
+                    ]
                 ),
+                const SizedBox(height: 2),
                 Row(
                   children: [
                     Expanded(
