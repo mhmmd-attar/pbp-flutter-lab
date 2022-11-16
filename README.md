@@ -2,6 +2,16 @@
 
 Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer Science Universitas Indonesia, Odd Semester 2022/2023
 
+[Assignment 8](#asgmt8) 
+
+<a name="asgmt8"># Assignment 8</a>
+### Explain the difference between Navigator.push and Navigator.pushReplacement.
+### List all the widgets you used in this project and explain their functions.
+### Name the types of events that exist in Flutter (example: onPressed).
+### Explain how the Navigator works in "switching" pages of a Flutter application.
+### Explain how you implemented the checking list above.
+
+
 # Assignment 7
 ### Explain what is meant by stateless widget and stateful widget and explain the difference between them.
 A stateless widget never changes while a stateful widget changes according to its state. A stateful widget has a state consisting of its values that can be changed. This change can be triggered in response to events such as user interactions or data exchange. Whenever the state changes, the state object calls setState to rebuild the widget.
