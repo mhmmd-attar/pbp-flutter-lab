@@ -7,11 +7,17 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 <a name="asgmt8"></a>
 # Assignment 8
 ### Explain the difference between Navigator.push and Navigator.pushReplacement.
+
 ### List all the widgets you used in this project and explain their functions.
+
 ### Name the types of events that exist in Flutter (example: onPressed).
+
 ### Explain how the Navigator works in "switching" pages of a Flutter application.
+
 ### Explain how you implemented the checking list above.
 
+<br><br>
+## References
 
 <a name="asgmt7"></a>
 # Assignment 7
@@ -40,7 +46,6 @@ Both final and const objects cannot be reassigned, but const is assigned at comp
 3. Created a new function that can decrement the counter only if the counter's value is greater than 0; modified the body to display the text widget above the _counter display with an if-else statement.
 4. Modified the floatingActionButton with an if-else statement to show the "- button" only when the counter not equal to 0.
 5. Created a new repository on GitHub; initialized the Flutter app directory as a repository: pushed it on GitHub
-
 <br><br>
 ## References
 1. https://youtu.be/p4TrTolskAo
