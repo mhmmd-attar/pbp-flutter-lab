@@ -2,7 +2,7 @@
 
 Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer Science Universitas Indonesia, Odd Semester 2022/2023
 
-[Assignment 8](#asgmt8) -- [Assignment 7](#asgmt7)
+[Assignment 8](#assignment-8) -- [Assignment 7](#asgmt7)
 
 <a name="asgmt8"></a>
 # Assignment 8
