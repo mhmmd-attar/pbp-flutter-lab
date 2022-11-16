@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/budget_form.dart';
-import 'package:counter_7/budget_show.dart';
+import 'package:counter_7/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       if (_counter > 0) {
         _counter--;
-      };
+      }
     });
   }
 
@@ -54,43 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            // Adding clickable menu
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                // Routing the menu to the main page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Add Budget Info'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BudgetFormPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Budget Data'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BudgetShowPage()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -6,10 +6,32 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 
 # Assignment 8
 ### Explain the difference between Navigator.push and Navigator.pushReplacement.
+`Navigator.push` pushes a route into the navigator stack while `Navigator.pushReplacement` pushes a route then removing the previous route (the current route/screen before the new one is pushed).
 
 ### List all the widgets you used in this project and explain their functions.
+1. Drawer
+2. ListTile
+3. Form
+4. TextFormField
+5. DropdownButtonFormField
+6. TextButton
+7. Dialog
+8. ListView
+9. Row
+10. Column
+11. Expanded
+12. Padding
+13. Align
+14. Container
+15. Text
+16. SizedBox
 
 ### Name the types of events that exist in Flutter (example: onPressed).
+1. onChanged
+2. onSaved
+3. onSubmitted
+4. onPressed
+5. Events handled with GestureDetector: onTap, onLongPress, onDoubleTap, onHorizontalDragStart, etc.
 
 ### Explain how the Navigator works in "switching" pages of a Flutter application.
 
@@ -17,6 +39,17 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 
 <br><br>
 ## References
+1. https://api.flutter.dev/flutter/widgets/Expanded-class.html
+2. https://thinkdiff.net/how-to-create-validate-and-save-form-in-flutter-e80b4d2a70a4
+3. https://stackoverflow.com/questions/49577781/how-to-create-number-input-field-in-flutter
+4. https://api.flutter.dev/flutter/material/DropdownButton-class.html
+5. https://stackoverflow.com/questions/49780858/flutter-dropdown-text-field
+6. https://stackoverflow.com/questions/73004239/flutter-dart-data-class
+7. https://www.geeksforgeeks.org/flutter-custom-widgets/
+### README references
+1. https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
+## Collaborators
+1. Kaloosh Falito Verrel
 
 # Assignment 7
 ### Explain what is meant by stateless widget and stateful widget and explain the difference between them.

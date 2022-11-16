@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/main.dart';
-import 'package:counter_7/budget_form.dart';
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/model.dart';
 
 class BudgetShowPage extends StatefulWidget {
@@ -17,43 +16,7 @@ class _BudgetShowPageState extends State<BudgetShowPage> {
       appBar: AppBar(
         title: const Text('Budget Data'),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            // Adding clickable menu
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                // Routing the menu to the main page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Add Budget Info'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BudgetFormPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Budget Data'),
-              onTap: () {
-                // Routing the menu to the form page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BudgetShowPage()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView.separated(
