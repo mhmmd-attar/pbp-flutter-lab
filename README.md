@@ -9,23 +9,22 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 `Navigator.push` pushes a route into the navigator stack while `Navigator.pushReplacement` pushes a route then removing the previous route (the current route/screen before the new one is pushed).
 
 ### List all the widgets you used in this project and explain their functions.
-1. Drawer
-2. ListTile
-3. Form
-4. TextFormField
-5. DropdownButtonFormField
-6. TextButton
-7. Dialog
-8. ListView
-9. Row
-10. Column
-11. Expanded
-12. Padding
-13. Align
-14. Container
-15. Text
-16. SizedBox
-17. FocusNode
+1. Drawer: a drawer in your page, sidemenu opened with a hamburger button, used in the Scaffold widget.
+2. Scaffold: a widget to build the page using basic Material Design visual layout structure
+3. Form: a container that can group together multiple form field widgets
+4. TextFormField: a form field that is a TextField, used for text input
+5. DropdownButtonFormField: a form field that is a dropdown menu.
+6. Dialog: a dialog widget that shows basic general dialog
+7. ListView.separated: a scrolling widget that displays children widgets constructed with a separator
+8. Row: displays children in a horizontal array
+9. Column: displays children in a vertical array
+10. Expanded: expands in a Row, Column, or Flex widget
+11. Padding: insets its child by the given padding
+12. Align: aligns its child with the alignment property
+13. Container: a container that can have specified painting, positioning, and sizing
+14. Text: displays a text
+15. SizedBox: a box with specified size, child will be forced to its dimension
+16. FocusScope and FocusNode: manages keyboard focus
 
 ### Name the types of events that exist in Flutter (example: onPressed).
 1. onChanged
@@ -36,9 +35,15 @@ Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer S
 6. Events handled with GestureDetector: onTap, onLongPress, onDoubleTap, onHorizontalDragStart, etc.
 
 ### Explain how the Navigator works in "switching" pages of a Flutter application.
+Flutter 1.0 uses the imperative approach for navigation. This approach mainly utilizes a stack containing routes and the push and pop methods. When we navigate to a new page, that new page is pushed into the stack. When we want to go back to the previous page/s, we pop the current route/s until the desired page it on top of the stack. There is also other methods, such as pushReplacement, where we push a new route/page and remove the previous one so that page can't be backtracked. This is mainly used to navigate after a login page since most of the time we don't want/need to go back the login page after logging in. There are the methods mainly used in this assignment
+Flutter 2.0 introduced the declarative approach.
 
 ### Explain how you implemented the checking list above.
-I started with the form page, adding input fields, following last week's tutorial, for the title and amount of the budget input. Then, I added the dropdown menu that includes 
+1. I started with the form page, adding input fields, following last week's tutorial, for the title and amount of the budget input. Then, I added the dropdown menu that to choose which type of budgeting info is being inputted. I modified the "amount" field so that only numbers can be typed in and, on mobile, the keyboard for numbers will be used. Then I added the "Save" button that will validate and save the form and configured the layout of the button and the form fields using Expanded.
+2. I created a new file containing a custom class `Budget` that acts as a Model class for the budget data and a list to hold all instances of the class. I modified the button on the form page to create a new Budget instance according to the saved data from the form and to add it to the list in model.dart when clicked/pressed, and to show a Dialog to indicate the data has been successfully added to the list.
+3. I create another dart file containing the page that will display the Budget instances. Using ListView.separated, for each item in the budgetData list will be returned as a Container that will display the title, amount, and type of the budget info. 
+4. To do the bonus feature, I created a new file `drawer.dart` that will contain a new custom class called `AppDrawer`. This class is a widget that returns a drawer to navigate between the three pages. In the other pages, I import the new file and changed the drawer in the Scaffold to use the newly created widget.
+5. I added a new attribute/variable in the Budget class that will contain a date as a string. In the form page, I added a new TextFormField that will showDatePicker onTap and a new private variable that will contain the date as a string. I created a new function that will be called when the TextFormField is tapped and will show the date picker. In this function, I created a formatter using the intl package what will format DateTime into a string containing only the date. After formatting the date, the string will be saved into the private variable and the TextFormField's value so it will be shown in the field in the form page. I added new Text widgets in the dialog returned when the form is validated and saved, and also in the result page.
 
 <br><br>
 ## References
@@ -53,6 +58,7 @@ I started with the form page, adding input fields, following last week's tutoria
 9. https://stackoverflow.com/questions/16126579/how-do-i-format-a-date-with-dart
 ### README references
 1. https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
+2. https://blog.logrocket.com/understanding-flutter-navigation-routing/#:~:text=The%20Navigator%20class%20provides%20all,a%20newer%20page%20and%20Navigator.
 ## Collaborators
 1. Kaloosh Falito Verrel
 
