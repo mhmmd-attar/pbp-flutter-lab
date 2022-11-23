@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:counter_7/drawer.dart';
-import 'package:counter_7/model.dart';
+import 'package:counter_7/widget/drawer.dart';
+import 'package:counter_7/model/budget.dart';
 
 class BudgetFormPage extends StatefulWidget {
   const BudgetFormPage({super.key});
