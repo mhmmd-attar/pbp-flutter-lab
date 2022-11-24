@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:counter_7/widget/drawer.dart';
 import 'package:counter_7/model/watchlist.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class WatchlistDetail extends StatefulWidget {
   const WatchlistDetail({super.key, required this.watchItem});
@@ -12,6 +14,8 @@ class WatchlistDetail extends StatefulWidget {
 }
 
 class _WatchlistDetailState extends State<WatchlistDetail> {
+  DateFormat dateOnly = DateFormat("d, MMM yyyy");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,29 +28,32 @@ class _WatchlistDetailState extends State<WatchlistDetail> {
         child: Column(children: [
           Align(
             alignment: Alignment.center,
-            child: Text(widget.watchItem.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            child: Text(widget.watchItem.fields.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
           ),
-          Row(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Expanded(
-              flex: 3,
-              child: Column(children: const [
-                Text("Release Data", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Rating", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Status", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Review", style: TextStyle(fontWeight: FontWeight.bold)),
+              flex: 30,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                Text("Released On", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text("Rating", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text("Status", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text("Review", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
               ]),
             ),
             Expanded(
-              flex: 7,
-              child: Column(children: [
-                Text(": ${widget.watchItem.releaseDate.toString()}"),
-                Text(": ${widget.watchItem.rating.toString()}/5"),
-                Text(": ${widget.watchItem.watched}"),
-                const Text(":"),
+              flex: 70,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(": ${dateOnly.format(widget.watchItem.fields.releaseDate)}", style: const TextStyle(fontSize: 16)),
+                Text(widget.watchItem.fields.rating == null ? ': 0/10' : ': ${widget.watchItem.fields.rating}/10', style: const TextStyle(fontSize: 16)),
+                Text(widget.watchItem.fields.watched == Watched.Y ? ": Watched" : ": Not Watched", style: const TextStyle(fontSize: 16)),
+                const Text(":", style: const TextStyle(fontSize: 16)),
               ]),
             ),
           ]),
-          Text(widget.watchItem.review),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(widget.watchItem.fields.review == "-" ? 'No review' : widget.watchItem.fields.review, style: const TextStyle(fontSize: 16)),
+          ),
           Expanded(
             child: Container(
               alignment: Alignment.bottomCenter,
@@ -58,7 +65,7 @@ class _WatchlistDetailState extends State<WatchlistDetail> {
                   Navigator.pop(context);
                 },
                 child: const Text(
-                  "Save",
+                  "Back",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
