@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:counter_7/widget/drawer.dart';
 import 'package:counter_7/widget/fetch_watchlist.dart';
 import 'package:counter_7/page/watchlist_detail.dart';
+import 'package:counter_7/model/watchlist.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class MyWatchlistPage extends StatefulWidget {
@@ -54,9 +55,9 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                         decoration: BoxDecoration(
                             color:Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
-                                  color: Colors.black,
+                                  color: snapshot.data![index].fields.watched==Watched.Y ? Colors.blue : Colors.orange,
                                   blurRadius: 2.0
                               )
                             ]

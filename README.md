@@ -2,7 +2,29 @@
 
 Platform-Based Programming (CSGE602022) - Organized by the Faculty of Computer Science Universitas Indonesia, Odd Semester 2022/2023
 
-[Assignment 8](#assignment-8) -- [Assignment 7](#assignment-7)
+[Assignment 9](#assignment-9) -- [Assignment 8](#assignment-8) -- [Assignment 7](#assignment-7)
+
+# Assignment 8
+### Can we retrieve JSON data without creating a model first? If yes, is it better than creating a model before retrieving JSON data?
+It is possible to retrieve JSON data without first creating a model. However, it is still recommended to use a class as a model for the data so we can define the data types and have a better designed and readable code
+
+### List the widgets that you used in this project and explain their functions.
+1. FutureBuilder: a widget that builds itself with the latest snapshot from a Future function
+2. CircularProgressIndicator: a widget that shows a circular spinning progress indicator to indicate the page/app is busy
+3. GestureDetector: a widget to capture and handle various events/interactions from user
+The rest are already explained in previous assignments
+
+### Explain the mechanism of retrieving data from json so it can be shown in Flutter.
+First, the JSON data is fetched using http.get() with the parsed URL. The fetched response containing the JSON data is then decoded using jsonDecode() and added into a list. That list is then returned by the fetch-function to the widget that called it, which will display it in various possible ways
+
+### Explain how you implemented the checklist above.
+1. I started by refactoring my project files with specific folders containing pages, models, and function/widgets. I then parsed my JSON data from my Django project with [QuickType](https://app.quicktype.io/) into a DART model and copy it into a new dart file
+2. I added a line in android/app/src/main/AndroidManifest.xml so my app can access the internet
+3. I created a function that will fetch the data from my Django project website and decode it into a list of the previously created model's objects
+4. I created a new page that will call said function and displays a list of the titles from my watch list. Each card that displays each title will push a new page that display the details of that movie
+5. I created that page to accept a model object as its argument and to display its details.
+6. Due to some problems, I had to add some variables in my Django project's settings and installed a new dependency. I also installed a new dependency on my flutter project given in Tutorial 9
+<br><br>
 
 # Assignment 8
 ### Explain the difference between Navigator.push and Navigator.pushReplacement.
