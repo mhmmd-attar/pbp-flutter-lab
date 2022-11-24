@@ -26,7 +26,6 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Add Budget Info'),
             onTap: () {
-              // Routing the menu to the form page
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const BudgetFormPage()),
@@ -36,7 +35,6 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Budget Data'),
             onTap: () {
-              // Routing the menu to the form page
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const BudgetShowPage()),
@@ -46,7 +44,6 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Watch List'),
             onTap: () {
-              // Routing the menu to the form page
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const MyWatchlistPage()),

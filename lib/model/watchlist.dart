@@ -1,39 +1,5 @@
-// To parse this JSON data, do
-//
-//     final watchList = watchListFromJson(jsonString);
-
-import 'dart:convert';
-
-List<WatchList> watchListFromJson(String str) => List<WatchList>.from(json.decode(str).map((x) => WatchList.fromJson(x)));
-
-String watchListToJson(List<WatchList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-class WatchList {
-  WatchList({
-    required this.model,
-    required this.pk,
-    required this.fields,
-  });
-
-  Model model;
-  int pk;
-  Fields fields;
-
-  factory WatchList.fromJson(Map<String, dynamic> json) => WatchList(
-    model: modelValues.map[json["model"]]!,
-    pk: json["pk"],
-    fields: Fields.fromJson(json["fields"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "model": modelValues.reverse[model],
-    "pk": pk,
-    "fields": fields.toJson(),
-  };
-}
-
-class Fields {
-  Fields({
+class WatchItem {
+  WatchItem({
     required this.watched,
     required this.title,
     required this.rating,
@@ -41,52 +7,25 @@ class Fields {
     required this.review,
   });
 
-  Watched watched;
-  String title;
-  int rating;
-  DateTime releaseDate;
-  String review;
+  final String watched;
+  final String title;
+  final int rating;
+  final DateTime releaseDate;
+  final String review;
 
-  factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-    watched: watchedValues.map[json["watched"]]!,
-    title: json["title"],
-    rating: json["rating"] == null ? null : json["rating"],
-    releaseDate: DateTime.parse(json["release_date"]),
-    review: json["review"],
+  factory WatchItem.fromJson(Map<String, dynamic> json) => WatchItem(
+    watched: json["fields"]["watched"]=="Y"?"watched":"not watched",
+    title: json["fields"]["title"],
+    rating: json["fields"]["rating"],
+    releaseDate: DateTime.parse(json["fields"]["release_date"]),
+    review: json["fields"]["review"]
   );
 
   Map<String, dynamic> toJson() => {
-    "watched": watchedValues.reverse[watched],
+    "watched": watched=='watched'?'Y':'N',
     "title": title,
-    "rating": rating == null ? null : rating,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "rating": rating,
+    "release_date": releaseDate,
     "review": review,
   };
-}
-
-enum Watched { Y, N }
-
-final watchedValues = EnumValues({
-  "N": Watched.N,
-  "Y": Watched.Y
-});
-
-enum Model { MYWATCHLIST_MY_WATCH_LIST }
-
-final modelValues = EnumValues({
-  "mywatchlist.MyWatchList": Model.MYWATCHLIST_MY_WATCH_LIST
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

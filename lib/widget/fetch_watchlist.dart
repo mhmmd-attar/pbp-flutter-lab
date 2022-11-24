@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:counter_7/model/watchlist.dart';
 
-Future<List<WatchList>> fetchWatchlist() async {
+Future<List<WatchItem>> fetchWatchlist() async {
   var url = Uri.parse('https://asgmt2-django-mvt.herokuapp.com/mywatchlist/json/');
   var response = await http.get(
     url,
@@ -14,10 +14,10 @@ Future<List<WatchList>> fetchWatchlist() async {
 
   var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-  List<WatchList> listWatchList = [];
+  List<WatchItem> listWatchList = [];
   for (var d in data) {
     if (d != null) {
-      listWatchList.add(WatchList.fromJson(d));
+      listWatchList.add(WatchItem.fromJson(d));
     }
   }
 

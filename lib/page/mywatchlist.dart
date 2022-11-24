@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:counter_7/widget/drawer.dart';
-import 'package:counter_7/model/watchlist.dart';
 import 'package:counter_7/widget/fetch_watchlist.dart';
+import 'package:counter_7/page/watchlist_detail.dart';
 
 class MyWatchlistPage extends StatefulWidget {
   const MyWatchlistPage({super.key});
@@ -40,8 +38,16 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                   );
                 } else {
                   return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index)=> Container(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index)=> GestureDetector(
+                      onTap: () {
+                        // Routing the menu to the main page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => WatchlistDetail(watchItem: snapshot.data![index])),
+                        );
+                      },
+                      child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
@@ -54,20 +60,15 @@ class _MyWatchlistPageState extends State<MyWatchlistPage> {
                               )
                             ]
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${snapshot.data![index].fields.title}",
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          "${snapshot.data![index].title}",
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      )
+                      ),
+                    )
                   );
                 }
               }
